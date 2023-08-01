@@ -12,6 +12,10 @@ Path to the tarball. Required.
 
 Path to the spec file. Required.
 
+### `sourcefiles`
+
+List of files to provide as spec file Sources. Optional.
+
 ## Outputs
 
 ### `path`
