@@ -47,6 +47,7 @@ jobs:
         EOF
 
     - name: Build source rpm
+      id: srpm
       uses: ./
       with:
         tarball: action-build-srpm-1.tar.gz
@@ -54,3 +55,9 @@ jobs:
         sourcefiles: |
           readme.md
           readme2.md
+
+    - name: Validate source rpm files
+      run: |
+        for file in $(rpm -qlp ${{ steps.srpm.outputs.path }}); do
+          echo $file | grep -e 'test\.spec' -e 'readme\.md' -e 'readme2\.md' -e 'action-build-srpm-1.tar.gz'
+        done
